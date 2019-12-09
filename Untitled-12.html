@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+        <div id="app"> 
+                <popup></popup>
+                <tooltip></tooltip>
+            </div > 
+            <script>
+            var base={
+        methods:{
+            show:function(){
+                this.visible=true;
+            },
+            hide:function(){
+                this.visible=false;
+            },
+            toggle:function(){
+            this.visible=!this.visible;
+            },
+        },
+        data: function () {
+            return{
+                visible:false,
+            }
+        }
+    }
+
+    Vue.component('tooltip',{
+        template:`
+            <div>
+            <span @mouseenter="show" @mouseleave="hide">bys</span>
+                <div v-if="visible">
+                        好好学习，天天向上
+                </div>
+            </div>
+        `,
+        mixins:[base],
+        data:function(){
+        return{
+            visible:true,
+        }
+    }
+    });
+
+    Vue.component('popup',{
+        template:`
+        <div>
+                <button @click="toggle">popup</button>
+                <div v-if="visible">
+                <span @click="hide">X</span>
+                <h2> title</h2>
+                 mixin 混入
+                </div>
+        </div>`,
+        mixins:[base],
+
+    })
+
+
+    new Vue({
+        el:'#app',
+        data:{
+
+        }
+    })
+            </script>
+</body>
+</html>

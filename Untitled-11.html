@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+            .card{
+            width: 200px;
+            background: #ccc;
+            padding: 10px;
+            margin: 5px;
+            }
+        </style>
+</head>
+</head>
+<body>
+    
+        <div id="app"> 
+                <div v-pin:true.buttom.right="card1.pinned" class="card">
+                <button @click="card1.pinned = !card1.pinned"> 钉住/取消</button>
+                如果运算复杂可以考虑计算属性,计算属性带缓存
+                </div>
+                <div v-pin="card2.pinned" class="card">
+                <a @click="card2.pinned = !card2.pinned" href="#">如果</a>
+                如果运算复杂可以考虑计算属性,计算属性带缓存
+                </div>
+                <div >
+                如果运算复杂可以考虑计算属性,计算属性带缓存
+                </div>
+                <div >
+                如果运算复杂可以考虑计算属性,计算属性带缓存
+                </div>
+                <div >
+                如果运算复杂可以考虑计算属性,计算属性带缓存
+                </div>
+                <div >
+                如果运算复杂可以考虑计算属性,计算属性带缓存
+                </div> <div >
+                如果运算复杂可以考虑计算属性,计算属性带缓存
+                </div> <div >
+                如果运算复杂可以考虑计算属性,计算属性带缓存
+                </div> <div >
+                如果运算复杂可以考虑计算属性,计算属性带缓存
+                </div> <div >
+                如果运算复杂可以考虑计算属性,计算属性带缓存
+                </div> <div >
+                如果运算复杂可以考虑计算属性,计算属性带缓存
+                </div> 
+            </div > 
+            <script>
+            Vue.directive('pin',function(el,binding) {
+        var pinned=binding.value;
+        var position=binding.modifiers;
+        var waring=binding.arg;
+        console.log('position:',position);
+        if(pinned){
+                el.style.position='fixed';
+                for(var key in position){
+                    if(position[key]){
+                        el.style[key]='10px';
+                    }
+                }
+            if (waring==='true') {
+                el.style.background='yellow';
+            }
+        }else{
+            el.style.position='static';
+        }
+    }),
+
+    new Vue({
+        el:'#app',
+        data:{
+            card1:{
+                pinned:false,
+            },
+            card2:{
+                pinned:false,
+            }
+        }
+    })
+    </script>
+</body>
+</html>

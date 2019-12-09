@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+<div id="app1">
+	<alert></alert>
+	<alert></alert>
+	<alert></alert>
+</div>
+	<div id="app2"> 
+	</div> 
+    <script>
+var alert_component ={
+        template:'<button @click="on_click">点击</button>',
+                methods:{
+                    on_click:function(){
+                        alert('此网页不支持打开');
+                    }
+    }
+    };
+
+    new Vue({
+        el:'#app1',
+    
+        components:{
+            alert:alert_component
+        }      
+    })
+    new Vue({
+        el:'#app2'
+    })
+	</script>
+</body>
+</html>

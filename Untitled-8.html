@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+        <div id="app">
+                <like></like>
+                <like></like>
+                <like></like>
+            </div>
+    
+    
+            <template id='like-component-tpl'>
+                    <button :class="{liked:liked}" @click="toggle_like()">
+                            👍{{like_count}} 
+                    </button>
+            </template>
+    
+    
+        <style>
+            .liked{
+                background:deeppink;
+            }
+        </style>
+        <script>
+        Vue.component('like',{
+            template: '#like-component-tpl'  ,
+    
+    data:function(){
+        return {
+            like_count:0,
+            liked: false
+        }
+    },
+    methods:{
+        toggle_like:function(){
+            if(!this.liked){
+                 this.like_count++;
+             }else{
+                 this.like_count--;
+             }
+
+             this.liked = !this.liked;
+        }
+    }
+})
+
+new Vue({
+    el:'#app',
+})
+
+        </script>
+</body>
+</html>
